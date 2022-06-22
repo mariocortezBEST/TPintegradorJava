@@ -10,5 +10,8 @@ public class App {
 		sala1.ocupar(1, 2);
 		sala1.ocupar(2, 2);
 		sala1.mostrar();
+		BD bd = new BD();
+		String peliculas = bd.consultar("select * from pelicula where estado=1");
+		System.out.println(peliculas);
 	}
 }

@@ -13,7 +13,7 @@ public class BD {
 	static final String USER = "root";
  	static final String PASS= "root";
  	
- 	public ResultSet consultar(String consulta) {
+ 	public String consultar(String consulta) {
  		Connection conn=null;
  		Statement stmt = null;
  		try {
@@ -22,14 +22,19 @@ public class BD {
  			conn = DriverManager.getConnection(DB_URL,USER,PASS);
  			stmt = conn.createStatement();
  			ResultSet resultado = stmt.executeQuery(consulta);
+ 			String resultados="";
  			while (resultado.next()) {
- 				String Name = resultado.getString("nombre");
- 				System.out.println("Nombre: "+Name);
+ 				String auxiliar = resultado.getString("nombre");
+ 				resultados+=auxiliar;
+ 				auxiliar = resultado.getString("genero");
+ 				resultados+=","+auxiliar;
+ 				auxiliar = resultado.getString("sinopsis");
+ 				resultados+=","+auxiliar;
  			}
  			resultado.close(); 			
  			stmt.close();
  			conn.close();
- 			return resultado;
+ 			return resultados;
  			
  		}catch(SQLException se){
 			 // Resolver errores para JDBC
@@ -52,10 +57,10 @@ public class BD {
 		 	} //cierra finally try
 		 } //cierra try
 		 System.out.println("Goodbye!");
-		return null;
+		return "";
  	}
  	
- 	public static void main(String[] args) {
+ 	/*public static void main(String[] args) {
 		Connection conn=null;
  		Statement stmt = null;
  		try {
@@ -64,7 +69,7 @@ public class BD {
  			conn = DriverManager.getConnection(DB_URL,USER,PASS);
  			stmt = conn.createStatement();
  			String sql;
- 			sql = "SELECT * FROM peliculas";
+ 			sql = "SELECT * FROM pelicula";
  			ResultSet resultado = stmt.executeQuery(sql);
  			while (resultado.next()) {
  				String Name = resultado.getString("nombre");
@@ -95,5 +100,5 @@ public class BD {
 		 	} //cierra finally try
 		 } //cierra try
 		 System.out.println("Goodbye!");
-	}
+	}*/
 }
