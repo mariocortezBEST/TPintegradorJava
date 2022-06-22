@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class BD {
@@ -13,23 +14,22 @@ public class BD {
 	static final String USER = "root";
  	static final String PASS= "root";
  	
- 	public String consultar(String consulta) {
+ 	public ArrayList<String> consultar(String consulta) {
  		Connection conn=null;
  		Statement stmt = null;
  		try {
  			Class.forName(JDBC_DRIVER);
- 			System.out.println("Conectando a la base de datos...");
  			conn = DriverManager.getConnection(DB_URL,USER,PASS);
  			stmt = conn.createStatement();
  			ResultSet resultado = stmt.executeQuery(consulta);
- 			String resultados="";
+ 			ArrayList<String> resultados = new ArrayList<String>();
  			while (resultado.next()) {
  				String auxiliar = resultado.getString("nombre");
- 				resultados+=auxiliar;
+ 				resultados.add(auxiliar);
  				auxiliar = resultado.getString("genero");
- 				resultados+=","+auxiliar;
+ 				resultados.add(auxiliar);
  				auxiliar = resultado.getString("sinopsis");
- 				resultados+=","+auxiliar;
+ 				resultados.add(auxiliar);
  			}
  			resultado.close(); 			
  			stmt.close();
@@ -57,7 +57,7 @@ public class BD {
 		 	} //cierra finally try
 		 } //cierra try
 		 System.out.println("Goodbye!");
-		return "";
+		return null;
  	}
  	
  	/*public static void main(String[] args) {
