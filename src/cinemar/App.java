@@ -15,9 +15,24 @@ public class App {
 		System.out.println("----------------------------------------------------------------------------------------");
 		sala1.mostrar();
 		System.out.println("----------------------------------------------------------------------------------------");
-		Reservas reserva = new Reservas();
-		reserva.disponibles();
+		Reservas reserva = new Reservas();		
 		Administrador admin = new Administrador();
-		admin.cargarpelicula();
+		Scanner entrada = new Scanner(System.in);
+		Byte opcion;
+		while (true) {
+			System.out.println("Ingrese la opcion deseada \r\n1- Cargar pelicula\r\n"
+					+ "2- Ver peliculas disponibles\r\n" + "3-Salir ");
+			opcion = entrada.nextByte();
+			if (opcion==1) {
+				admin.cargarpelicula();
+			}
+			else if (opcion==2) {
+				reserva.disponibles();
+			}
+			else if(opcion==3) {
+				break;
+			}
+			else continue;
+		}
 	}
 }
