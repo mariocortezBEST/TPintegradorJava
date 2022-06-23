@@ -17,5 +17,7 @@ public class App {
 		System.out.println("----------------------------------------------------------------------------------------");
 		Reservas reserva = new Reservas();
 		reserva.disponibles();
+		Administrador admin = new Administrador();
+		admin.cargarpelicula();
 	}
 }
