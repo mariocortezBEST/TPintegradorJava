@@ -17,12 +17,12 @@ public class App {
 		System.out.println("----------------------------------------------------------------------------------------");
 		Reservas reserva = new Reservas();		
 		Administrador admin = new Administrador();
-		Scanner entrada = new Scanner(System.in);
-		Byte opcion;
+		byte opcion;
+		Scanner sc = new Scanner(System.in);
 		while (true) {
 			System.out.println("Ingrese la opcion deseada \r\n1- Cargar pelicula\r\n"
-					+ "2- Ver peliculas disponibles\r\n" + "3-Salir ");
-			opcion = entrada.nextByte();
+					+ "2- Ver peliculas disponibles\r\n" + "3-Salir ");			
+			opcion = sc.nextByte();			
 			if (opcion==1) {
 				admin.cargarpelicula();
 			}
